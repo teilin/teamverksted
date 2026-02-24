@@ -88,27 +88,24 @@
 
     /* ── Flag cards ──────────────────────────────── */
     .lang-cards {
-      display: flex;
-      gap: clamp(16px, 2.5vw, 32px);
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(14px, 2vw, 28px);
       width: 100%;
-      max-width: 880px;
+      max-width: 760px;
     }
 
     .lang-card {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: clamp(16px, 2vw, 24px);
-      padding: clamp(32px, 4vw, 60px) clamp(40px, 5.5vw, 80px);
+      gap: clamp(14px, 1.8vw, 22px);
+      padding: clamp(28px, 3.5vw, 52px) clamp(32px, 4.5vw, 64px);
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: clamp(8px, 1vw, 14px);
       text-decoration: none;
       color: inherit;
-      flex: 1 1 clamp(200px, 28vw, 340px);
-      max-width: 400px;
       transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
       position: relative;
       overflow: hidden;
@@ -202,8 +199,7 @@
 
       /* Stack cards vertically, switch to horizontal layout inside */
       .lang-cards {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: 1fr;
         max-width: 420px;
         gap: 12px;
       }
@@ -213,8 +209,6 @@
         justify-content: flex-start;
         padding: 20px 24px;
         gap: 20px;
-        max-width: none;
-        flex: none;
         border-radius: 10px;
         text-align: left;
       }
@@ -293,6 +287,34 @@
         <div class="lang-card-text">
           <span class="lang-name">English</span>
           <span class="lang-cta">Open PDF</span>
+        </div>
+      </a>
+
+      <!-- Spanish -->
+      <a href="docs/es.pdf" target="_blank" rel="noopener noreferrer" class="lang-card">
+        <div class="flag" aria-hidden="true">
+          <svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+            <rect width="3" height="2" fill="#AA151B"/>
+            <rect y="0.5" width="3" height="1" fill="#F1BF00"/>
+          </svg>
+        </div>
+        <div class="lang-card-text">
+          <span class="lang-name">Español</span>
+          <span class="lang-cta">Abrir PDF</span>
+        </div>
+      </a>
+
+      <!-- Polish -->
+      <a href="docs/pl.pdf" target="_blank" rel="noopener noreferrer" class="lang-card">
+        <div class="flag" aria-hidden="true">
+          <svg viewBox="0 0 2 1" xmlns="http://www.w3.org/2000/svg">
+            <rect width="2" height="1" fill="#fff"/>
+            <rect y="0.5" width="2" height="0.5" fill="#DC143C"/>
+          </svg>
+        </div>
+        <div class="lang-card-text">
+          <span class="lang-name">Polski</span>
+          <span class="lang-cta">Otwórz PDF</span>
         </div>
       </a>
 
