@@ -1,0 +1,6 @@
+{
+  "name": "washing-instructions",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
