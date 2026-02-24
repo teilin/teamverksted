@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaskeanvisning – Team Verksted</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #0D1117;
+      --surface:  #161B22;
+      --surface2: #1C232D;
+      --border:   #242C38;
+      --accent:   #E8681A;
+      --accent-h: #F07830;
+      --text:     #EFF2F6;
+      --muted:    #6E7B8A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ─────────────────────────────────── */
+    .site-header {
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 36px;
+      width: auto;
+    }
+
+    /* ── Main ────────────────────────────────────── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 24px;
+      gap: 48px;
+    }
+
+    .intro {
+      text-align: center;
+      max-width: 440px;
+    }
+
+    .intro h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .intro h1 span {
+      display: block;
+      font-size: clamp(16px, 3vw, 21px);
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0;
+      margin-top: 6px;
+    }
+
+    .intro p {
+      margin-top: 14px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Flag cards ──────────────────────────────── */
+    .lang-cards {
+      display: flex;
+      gap: clamp(16px, 2.5vw, 32px);
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 880px;
+    }
+
+    .lang-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(16px, 2vw, 24px);
+      padding: clamp(32px, 4vw, 60px) clamp(40px, 5.5vw, 80px);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: clamp(8px, 1vw, 14px);
+      text-decoration: none;
+      color: inherit;
+      flex: 1 1 clamp(200px, 28vw, 340px);
+      max-width: 400px;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lang-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .lang-card:hover {
+      border-color: var(--accent);
+      background: var(--surface2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(232, 104, 26, 0.15);
+    }
+
+    .lang-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .lang-card:active {
+      transform: translateY(-1px);
+    }
+
+    /* Flag wrapper */
+    .flag {
+      width: clamp(80px, 10vw, 140px);
+      height: clamp(54px, 6.7vw, 94px);
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+
+    .flag svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .lang-name {
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .lang-cta {
+      font-size: clamp(11px, 1vw, 13px);
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.18s;
+    }
+
+    .lang-card:hover .lang-cta {
+      color: var(--accent);
+    }
+
+    .lang-card-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── Footer ─────────────────────────────────── */
+    .site-footer {
+      padding: 20px 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── Responsive: mobile ──────────────────────── */
+    @media (max-width: 580px) {
+      .site-header { padding: 14px 16px; }
+      .logo { height: 28px; }
+
+      .main { padding: 40px 16px; gap: 32px; }
+
+      .intro p { font-size: 14px; }
+
+      /* Stack cards vertically, switch to horizontal layout inside */
+      .lang-cards {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 420px;
+        gap: 12px;
+      }
+
+      .lang-card {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 20px 24px;
+        gap: 20px;
+        max-width: none;
+        flex: none;
+        border-radius: 10px;
+        text-align: left;
+      }
+
+      /* Disable upward lift on touch devices (feels wrong) */
+      .lang-card:hover { transform: none; }
+      .lang-card:active { transform: scale(0.98); }
+
+      .flag {
+        width: 72px;
+        height: 48px;
+        flex-shrink: 0;
+      }
+
+      .lang-card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .lang-name { font-size: 18px; }
+      .lang-cta  { font-size: 11px; }
+
+      .site-footer { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <img
+      src="https://www.teamverksted.no/media/3m4dvnvm/tv_logo_w.png"
+      alt="Team Verksted"
+      class="logo"
+    >
+  </header>
+
+  <main class="main">
+    <div class="intro">
+      <h1>Vaskeanvisning<span>Washing Instructions</span></h1>
+      <p>Velg ditt språk for å åpne instruksjonsdokumentet.<br>Select your language to open the instruction document.</p>
+    </div>
+
+    <div class="lang-cards">
+
+      <!-- Norwegian -->
+      <a href="docs/no.pdf" target="_blank" rel="noopener noreferrer" class="lang-card">
+        <div class="flag" aria-hidden="true">
+          <svg viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
+            <rect width="22" height="16" fill="#EF2B2D"/>
+            <rect x="6"  width="4"  height="16" fill="#fff"/>
+            <rect y="6"  width="22" height="4"  fill="#fff"/>
+            <rect x="7"  width="2"  height="16" fill="#002868"/>
+            <rect y="7"  width="22" height="2"  fill="#002868"/>
+          </svg>
+        </div>
+        <div class="lang-card-text">
+          <span class="lang-name">Norsk</span>
+          <span class="lang-cta">Åpne PDF</span>
+        </div>
+      </a>
+
+      <!-- English -->
+      <a href="docs/en.pdf" target="_blank" rel="noopener noreferrer" class="lang-card">
+        <div class="flag" aria-hidden="true">
+          <svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="30" fill="#012169"/>
+            <!-- Saltire (diagonals) -->
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4"/>
+            <!-- Cross -->
+            <path d="M30,0 V30 M0,15 H60" stroke="#fff" stroke-width="10"/>
+            <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/>
+          </svg>
+        </div>
+        <div class="lang-card-text">
+          <span class="lang-name">English</span>
+          <span class="lang-cta">Open PDF</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    &copy; <script>document.write(new Date().getFullYear())</script> Team Verksted
+  </footer>
+
+</body>
+</html>
